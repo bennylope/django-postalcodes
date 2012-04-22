@@ -11,32 +11,38 @@ class Migration(SchemaMigration):
         # Adding model 'PostalCode'
         db.create_table('postalcodes_postalcode', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('code', self.gf('django.db.models.fields.CharField')(max_length=10)),
+            ('code', self.gf('django.db.models.fields.CharField')(max_length=20)),
             ('country', self.gf('django.db.models.fields.CharField')(max_length=2)),
-            ('city', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
-            ('state', self.gf('django.db.models.fields.CharField')(max_length=50, null=True, blank=True)),
+            ('city', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('state', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
             ('latitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=9, decimal_places=6, blank=True)),
             ('longitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=9, decimal_places=6, blank=True)),
         ))
         db.send_create_signal('postalcodes', ['PostalCode'])
 
+        # Adding unique constraint on 'PostalCode', fields ['code', 'country']
+        db.create_unique('postalcodes_postalcode', ['code', 'country'])
+
 
     def backwards(self, orm):
         
+        # Removing unique constraint on 'PostalCode', fields ['code', 'country']
+        db.delete_unique('postalcodes_postalcode', ['code', 'country'])
+
         # Deleting model 'PostalCode'
         db.delete_table('postalcodes_postalcode')
 
 
     models = {
         'postalcodes.postalcode': {
-            'Meta': {'object_name': 'PostalCode'},
-            'city': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'code': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
+            'Meta': {'unique_together': "(('code', 'country'),)", 'object_name': 'PostalCode'},
+            'city': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'code': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'country': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'latitude': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '9', 'decimal_places': '6', 'blank': 'True'}),
             'longitude': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '9', 'decimal_places': '6', 'blank': 'True'}),
-            'state': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'})
+            'state': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'})
         }
     }
 
