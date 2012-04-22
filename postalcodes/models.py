@@ -19,7 +19,6 @@ class PostalCode(models.Model):
             null=True)
 
     class Meta:
-        unique_together = ("code", "country")
         verbose_name = _("Postal code")
         verbose_name_plural = _("Postal codes")
 

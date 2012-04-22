@@ -20,22 +20,16 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('postalcodes', ['PostalCode'])
 
-        # Adding unique constraint on 'PostalCode', fields ['code', 'country']
-        db.create_unique('postalcodes_postalcode', ['code', 'country'])
-
 
     def backwards(self, orm):
         
-        # Removing unique constraint on 'PostalCode', fields ['code', 'country']
-        db.delete_unique('postalcodes_postalcode', ['code', 'country'])
-
         # Deleting model 'PostalCode'
         db.delete_table('postalcodes_postalcode')
 
 
     models = {
         'postalcodes.postalcode': {
-            'Meta': {'unique_together': "(('code', 'country'),)", 'object_name': 'PostalCode'},
+            'Meta': {'object_name': 'PostalCode'},
             'city': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'code': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'country': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
