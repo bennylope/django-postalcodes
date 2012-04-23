@@ -3,6 +3,17 @@ Django Postal Codes
 
 A simple data model for storing postal codes with placenames and location.
 
+Installing
+----------
+
+You can clone the repository and install from source::
+
+    python setup.py install
+
+or use `pip` to install from PyPI::
+
+    pip install django-postalcodes
+
 Getting data
 ------------
 
