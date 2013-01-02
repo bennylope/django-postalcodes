@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -13,10 +13,7 @@ class PostalCode(models.Model):
     country = models.CharField(_("country"), max_length=2)
     city = models.CharField(_("city"), max_length=200, blank=True, null=True)
     state = models.CharField(_("state"), max_length=100, blank=True, null=True)
-    latitude = models.DecimalField(_("latitude"), decimal_places=6, max_digits=9, blank=True,
-            null=True)
-    longitude = models.DecimalField(_("longitude"), decimal_places=6, max_digits=9, blank=True,
-            null=True)
+    location = models.PointField(null=True, blank=True)
 
     class Meta:
         verbose_name = _("Postal code")

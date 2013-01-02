@@ -14,6 +14,10 @@ or use `pip` to install from PyPI::
 
     pip install django-postalcodes
 
+.. note::
+    Version 0.2 requires a GIS backend (e.g. PostGIS) and is breaks backwards
+    compatability with 0.1. For non-GIS based postalcodes use 0.1.
+
 Getting data
 ------------
 
@@ -24,12 +28,13 @@ detailed zip code data. The `GeoNames geographical database
 <http://www.geonames.org/export/>`_ also provides postal code data for
 international postal codes (and other places).
 
-Rather than include data files which may be of little to no use for many
-users, you can import data from the aformentioned sources, or use one of two
-SQL files I've made available based on the GeoNames data. Each file contains a
-multi-value insert and has been tested in PostgreSQL. The same queries should
-work in MySQL, although they will require modification to be of use with
-Sqlite.
+The following data file can be used to prepopulate a PostGIS database with US
+postalcodes complete with location.
+
+* `US zip codes using state abbreviations <https://dl.dropbox.com/u/6515401/postalcodes/postalcodes_gis_us.sql.zip>`_ (879 KB)
+
+These files pertain to the 0.1 release but may still be useful. They are based
+on location via decimal fields, rather than a GIS point field.
 
 * `International postal codes <http://dl.dropbox.com/u/6515401/postalcodes/postalcodes_international.sql.zip>`_ (9 MB)
 * `US zip codes using state abbreviations <http://dl.dropbox.com/u/6515401/postalcodes/postalcodes_us.sql.zip>`_ (623 KB)
