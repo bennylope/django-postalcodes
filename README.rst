@@ -15,8 +15,9 @@ or use `pip` to install from PyPI::
     pip install django-postalcodes
 
 .. note::
-    Version 0.2 requires a GIS backend (e.g. PostGIS) and is breaks backwards
-    compatability with 0.1. For non-GIS based postalcodes use 0.1.
+    Version 0.2 requires a GIS backend (e.g. PostGIS). Migrating from 0.1 will
+    not be straightforward if you have existing data decimal data or do not
+    have a GIS backend.
 
 Getting data
 ------------

@@ -8,7 +8,7 @@ class PostalCodeAdmin(admin.ModelAdmin):
     Admin for the postal code model
     """
     search_fields = ['code', 'city', 'state']
-    list_filter = ['country']
+    list_filter = ['country', 'state']
 
 
 admin.site.register(PostalCode, PostalCodeAdmin)
