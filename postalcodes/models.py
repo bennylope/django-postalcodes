@@ -15,6 +15,8 @@ class PostalCode(models.Model):
     state = models.CharField(_("state"), max_length=100, blank=True, null=True)
     location = models.PointField(null=True, blank=True)
 
+    objects = models.GeoManager()
+
     class Meta:
         verbose_name = _("Postal code")
         verbose_name_plural = _("Postal codes")

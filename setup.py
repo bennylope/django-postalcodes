@@ -6,7 +6,7 @@ setup(
     author="Ben Lopatin",
     author_email="ben.lopatin@wellfireinteractive.com",
     name='django-postalcodes',
-    version='0.2',
+    version='0.3.0',
     description='Postal code management.',
     long_description=open(os.path.join(os.path.dirname(__file__),
         'README.rst')).read(),
@@ -29,4 +29,3 @@ setup(
     packages=find_packages(),
     zip_safe=False
 )
-
