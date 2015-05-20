@@ -1,12 +1,14 @@
-from setuptools import setup, find_packages
 import os
+from setuptools import setup, find_packages
+
+import postalcodes
 
 
 setup(
     author="Ben Lopatin",
     author_email="ben.lopatin@wellfireinteractive.com",
     name='django-postalcodes',
-    version='0.3.0',
+    version=postalcodes.__version__,
     description='Postal code management.',
     long_description=open(os.path.join(os.path.dirname(__file__),
         'README.rst')).read(),

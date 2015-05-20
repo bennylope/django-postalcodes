@@ -19,6 +19,9 @@ or use `pip` to install from PyPI::
     not be straightforward if you have existing data decimal data or do not
     have a GIS backend.
 
+If you are using South you must use South >= 1.0 to ensure compatability with
+the new `south_migrations` migrations module name.
+
 Getting data
 ------------
 
