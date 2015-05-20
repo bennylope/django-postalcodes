@@ -1,43 +1,29 @@
-# encoding: utf-8
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-class Migration(SchemaMigration):
-
-    def forwards(self, orm):
-        
-        # Adding model 'PostalCode'
-        db.create_table('postalcodes_postalcode', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('code', self.gf('django.db.models.fields.CharField')(max_length=20)),
-            ('country', self.gf('django.db.models.fields.CharField')(max_length=2)),
-            ('city', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('state', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
-            ('latitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=9, decimal_places=6, blank=True)),
-            ('longitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=9, decimal_places=6, blank=True)),
-        ))
-        db.send_create_signal('postalcodes', ['PostalCode'])
+from django.db import models, migrations
+import django.contrib.gis.db.models.fields
 
 
-    def backwards(self, orm):
-        
-        # Deleting model 'PostalCode'
-        db.delete_table('postalcodes_postalcode')
+class Migration(migrations.Migration):
 
+    dependencies = [
+    ]
 
-    models = {
-        'postalcodes.postalcode': {
-            'Meta': {'object_name': 'PostalCode'},
-            'city': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
-            'code': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'country': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'latitude': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '9', 'decimal_places': '6', 'blank': 'True'}),
-            'longitude': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '9', 'decimal_places': '6', 'blank': 'True'}),
-            'state': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'})
-        }
-    }
-
-    complete_apps = ['postalcodes']
+    operations = [
+        migrations.CreateModel(
+            name='PostalCode',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('code', models.CharField(max_length=20, verbose_name='postal code')),
+                ('country', models.CharField(max_length=2, verbose_name='country')),
+                ('city', models.CharField(max_length=200, null=True, verbose_name='city', blank=True)),
+                ('state', models.CharField(max_length=100, null=True, verbose_name='state', blank=True)),
+                ('location', django.contrib.gis.db.models.fields.PointField(srid=4326, null=True, blank=True)),
+            ],
+            options={
+                'verbose_name': 'Postal code',
+                'verbose_name_plural': 'Postal codes',
+            },
+        ),
+    ]
